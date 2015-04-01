@@ -1,55 +1,22 @@
-// // places route based on starting and end params
-// if (document.getElementById('map-canvas')){
-//   var directionsDisplay;
-//   var directionsService = new google.maps.DirectionsService();
-//   var map;
-
-//   function initialize() {
-//     directionsDisplay = new google.maps.DirectionsRenderer();
-//     var center = new google.maps.LatLng(37.7580 , -122.4400);
-//     var mapOptions = {
-//       zoom:13,
-//       center: center
-//     }
-//     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-//     directionsDisplay.setMap(map);
-//   }
-// }
-//   console.log('made it')
-//   console.log(startingInput)
-//   console.log(endingInput)
-//   console.log(startingStreet)
-//   console.log(endingStreet)
-//   debugger
-
-//   function calcRoute() {
-//     //var startingStreet = document.getElementById("starting_street").value;
-//     //var endingStreet = document.getElementById("ending_street").value;
-//     var request = {
-//       origin:startingStreet,
-//       destination:endingStreet,
-//       travelMode: google.maps.TravelMode.WALKING
-//     };
-//     directionsService.route(request, function(result, status) {
-//       if (status == google.maps.DirectionsStatus.OK) {
-//         directionsDisplay.setDirections(result);
-//       }
-//     });
-//   }
-// };
-
 // places relavent crimes on my map
 
 if (document.getElementById('map-canvas')){
-  var routingAndCrimeData = JSON.parse((document.getElementById('data')).innerText)
-  var all_crimes = routingAndCrimeData["all_crimes"]
+  var routingAndCrimeData = JSON.parse((document.getElementById('data')).innerText);
+  var all_crimes = routingAndCrimeData["all_crimes"];
+  var startingStreet = routingAndCrimeData["startingStreet"]
+  var endingStreet = routingAndCrimeData["endingStreet"]
+  var directionsDisplay;
+  var directionsService = new google.maps.DirectionsService();
+
   function initialize() {
+    directionsDisplay = new google.maps.DirectionsRenderer();
     var center = new google.maps.LatLng(37.7580 , -122.4400);
     var mapOptions = {
       zoom: 13,
       center: center
     };
-    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    directionsDisplay.setMap(map);
 
     all_crimes.forEach(function(crime){
       var contentString = '<div id="content">'+
@@ -68,9 +35,9 @@ if (document.getElementById('map-canvas')){
         content: contentString
       });
 
-      var myLatlng = new google.maps.LatLng(Number(crime.y), Number(crime.x));
+      var crimeLatlng = new google.maps.LatLng(Number(crime.y), Number(crime.x));
       var marker = new google.maps.Marker({
-        position: myLatlng,
+        position: crimeLatlng,
         map: map,
         title: crime.descript
       });
@@ -78,6 +45,22 @@ if (document.getElementById('map-canvas')){
         infowindow.open(map,marker);
       });
     })
+    calcRoute();
+  }
+  function calcRoute() {
+
+    var request = {
+      origin: startingStreet,
+      destination: endingStreet,
+      travelMode: google.maps.TravelMode.WALKING
+    }
+
+    directionsService.route(request, function(result, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        path_coordinates = result.routes[0].overview_path
+        directionsDisplay.setDirections(result);
+      }
+    });
   }
   google.maps.event.addDomListener(window, 'load', initialize);
-}
+};

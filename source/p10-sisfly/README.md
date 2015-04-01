@@ -1,15 +1,12 @@
+
 find google documentation on getting a route from two points, directions API
 api call for direction is separate and based on google documentation
 
 Today:
-1. figure out how to access the crimes on line 55 properly
-2. display a walking route on my site from a post from the landing page
-3. display a crime and the walking route on the site at once
-4. fix git tracking issue - download zip and copy and paste the right files - include images too
-5. fix personal machine pg issue
+1. Look at google response for route gps and such
+
 
 Next:
-look at google response for route gps and such
 determine a way to see which crimes should actually be collected in a helper method
  + this crime will be captured in the catograph route with Crimes.relevant_crimes.to_json
  + the var all_crimes will become var all_relevant_crimes
