@@ -22,10 +22,12 @@ end
 
 post '/calculation' do
   path_coordinates = JSON.parse(params["path_coordinates"])
-  crimeData = []
+  crime_data = []
   path_coordinates.each do |individual_coordinate|
-    crimeData << nearby_crimes(individual_coordinate)
+    crime_data << nearby_crimes(individual_coordinate)
   end
+  sisflyScore = 10 #sisfly_score(crime_data)
+  selectedCrimeLocations = location_selector(crime_data)
   content_type :json
-  crimeData.to_json
+  {crimeData: selectedCrimeLocations, sisflyScore: sisflyScore}.to_json
 end
