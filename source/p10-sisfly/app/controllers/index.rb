@@ -1,3 +1,7 @@
+require 'json'
+require 'pp'
+require 'pry'
+
 get '/' do
   erb :index
 end
@@ -9,14 +13,20 @@ end
 get '/cartograph' do
   #@relavent_crime = crime.relavent_crime.to_json
   #directions(params)
-  crime = Crime.all.limit(20)
-  @routing_and_crime_data = {startingStreet: params["starting_street"],
-                             endingStreet: params["ending_street"],
-                             all_crimes: crime}.to_json
+  javascript_env['routingData'] = {
+    startingStreet: params["starting_street"],
+    endingStreet: params["ending_street"],
+  }
   erb :cartograph
-  # erb :walkingroute
 end
 
 post '/calculation' do
-p "*" * 50
+  path_coordinates = JSON.parse(params["path_coordinates"])
+  crimeData = nearby_crimes(relevant_crime(path_coordinates))
+  pp @json_crimes
+  # pp crimeData
+  # path_coordinates.each do |coordinates|
+  #   p coordinates
+  # end
+
 end
