@@ -1,9 +1,6 @@
 <html>
 <head>
   <title> Sisfly</title>
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 </head>
 <body class = "index-body">
   <div class="container">
@@ -11,8 +8,8 @@
       <h1 class="logo"> Sisfly.</h1>
       <h3 class= "tagline"> tread thoughtfully</h3>
       <form action = "/cartograph" method= "GET">
-        <input id = "starting-input" onFocus = "geolocate()" class="controls" type = "text" name = "starting_street">
-        <input id = "ending-input" class="controls" type = "text" name = "ending_street"><br><br>
+        <input id = "starting-input" onFocus = "geolocate()" class="controls" type = "text" name = "starting_street" placeholder = "Starting">
+        <input id = "ending-input" class="controls" type = "text" name = "ending_street" placeholder = "Destination"><br><br>
         <input type = "submit" value= "Submit">
         <script type="text/javascript">
 
