@@ -13,17 +13,3 @@ if (document.getElementById('ending-input')){
     var places = searchBox.getPlaces();
   });
 };
-
- function geolocate() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var geolocation = new google.maps.LatLng(
-            position.coords.latitude, position.coords.longitude);
-        var circle = new google.maps.Circle({
-          center: geolocation,
-          radius: position.coords.accuracy
-        });
-        autocomplete.setBounds(circle.getBounds());
-      });
-    }
-  }
