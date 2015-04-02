@@ -1,32 +1,10 @@
 
-find google documentation on getting a route from two points, directions API
-api call for direction is separate and based on google documentation
-
 Today:
-1. Look at google response for route gps and such
-
-
-Next:
-determine a way to see which crimes should actually be collected in a helper method
- + this crime will be captured in the catograph route with Crimes.relevant_crimes.to_json
- + the var all_crimes will become var all_relevant_crimes
- + look again about bounds on the search bar
-
-Stretch:
-color coding of actual walking route
-get entire database back to 2003
-create a normalized scale of danger from 0 to 100
-
+1. properly parse json object to plot the crimes along the route
+2. create logic to only send a few crimes to mark depending on length of gps length
+3. create a normalized scale of danger from 0 to 100, this value will be marked with a different color marker using a midpoint of the gps array
 
 application flow - mvp
 landing page with sisfly. two boxes to submit two different params you can walk from
 
-after submitting the streets you will be taken to a page with the walking route and the crimes that are within a predetermined gps range will be displayed along the route
-- we will use the long and lat coordinates for placing the google map markers when someone makes an inquiry
-- we will use the google maps direction api for display the walking route on my page
-- we could create a search box on the left of the map for additional inquiries using ajax otherwise a link back to index '/'
-
-stretch goals
-- mobile plugin to google maps with a button for uber recommendation if its too unsafe
-
-templating like handlebars or moustache for info box
+after submitting the streets you will be taken to a page with the walking route and the crimes that are within a predetermined metric range will be displayed along the route
