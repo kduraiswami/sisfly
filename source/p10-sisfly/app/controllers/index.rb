@@ -6,10 +6,6 @@ get '/' do
   erb :index
 end
 
-# get '/cartograph/:route_id' do
-#   erb :cartograph
-# end
-
 get '/cartograph' do
   #@relavent_crime = crime.relavent_crime.to_json
   #directions(params)
