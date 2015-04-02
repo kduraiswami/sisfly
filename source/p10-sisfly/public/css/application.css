@@ -65,6 +65,13 @@
   border-color: #4d90fe;
 }
 
+#back-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 99;
+ }
+
 .pac-container {
   font-family: Roboto;
 }
