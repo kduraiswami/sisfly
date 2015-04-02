@@ -5,7 +5,7 @@
     var directionsDisplay = new google.maps.DirectionsRenderer();
     var center = new google.maps.LatLng(37.7580 , -122.4400);
     var mapOptions = {zoom: 13, center: center};
-    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
     directionsDisplay.setMap(map);
     calcRoute(directionsService, directionsDisplay);
@@ -37,44 +37,47 @@
       data: {path_coordinates: JSON.stringify(pathCoordinates)}
     });
 
-    request.done(function(crimeData) {
-      plotRelevantCrimes(crimeData);
-    });
-  };
+    request.done(function(response) {
+      dog = response["crimeData"]
+      console.log(dog)
+      var plotRelevantCrimes = function(crimeData){
+        crimeData.forEach(function(crime){
+          if (crime != undefined){
+          var contentString = '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          '<h1 id="firstHeading" class="firstHeading">'+crime.descript+'</h1>'+
+          '<div id="bodyContent">'+
+          '<p> '+ crime.dayofweek+' </p>'+
+          '<p> '+ crime.date +' </p>'+
+          '<p> '+crime.address+'  </p>'+
+          '<p>  '+ crime.date +' </p>'+
+          '</div>'+
+          '</div>';
 
-  var plotRelevantCrimes = function(crimeData){
-    debugger
-  crimeData.forEach(function(crime){
-    if (crime.length > 0){
-    var contentString = '<div id="content">'+
-    '<div id="siteNotice">'+
-    '</div>'+
-    '<h1 id="firstHeading" class="firstHeading">'+crime.descript+'</h1>'+
-    '<div id="bodyContent">'+
-    '<p> '+ crime.dayofweek+' </p>'+
-    '<p> '+ crime.date +' </p>'+
-    '<p> '+crime.address+'  </p>'+
-    '<p>  '+ crime.date +' </p>'+
-    '</div>'+
-    '</div>';
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
 
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
+          var crimeLatlng = new google.maps.LatLng(Number(crime.y), Number(crime.x));
+          var marker = new google.maps.Marker({
+            position: crimeLatlng,
+            map: map,
+            title: crime.descript
+          });
+          google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map,marker);
+          });
+      }
+        })
 
-    var crimeLatlng = new google.maps.LatLng(Number(crime.y), Number(crime.x));
-    var marker = new google.maps.Marker({
-      position: crimeLatlng,
-      map: map,
-      title: crime.descript
+      }
+      plotRelevantCrimes(dog);
+      console.log(response["sisflyScore"])
+      // plotSisflyScore(response["sisflyScore"])
     });
-  }
-    google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map,marker);
-    });
-  })
+};
 
-}
 
 
 $(function(){
@@ -82,34 +85,3 @@ $(function(){
 });
 
 }();
-
-
-
-    //relevantCrimes();
-  // function relevantCrimes() = allRelevantCrimes.forEach(function(crime){
-  //   var contentString = '<div id="content">'+
-  //   '<div id="siteNotice">'+
-  //   '</div>'+
-  //   '<h1 id="firstHeading" class="firstHeading">'+crime.descript+'</h1>'+
-  //   '<div id="bodyContent">'+
-  //   '<p> '+ crime.dayofweek+' </p>'+
-  //   '<p> '+ crime.date +' </p>'+
-  //   '<p> '+crime.address+'  </p>'+
-  //   '<p>  '+ crime.date +' </p>'+
-  //   '</div>'+
-  //   '</div>';
-
-  //   var infowindow = new google.maps.InfoWindow({
-  //     content: contentString
-  //   });
-
-  //   var crimeLatlng = new google.maps.LatLng(Number(crime.y), Number(crime.x));
-  //   var marker = new google.maps.Marker({
-  //     position: crimeLatlng,
-  //     map: map,
-  //     title: crime.descript
-  //   });
-  //   google.maps.event.addListener(marker, 'click', function() {
-  //     infowindow.open(map,marker);
-  //   });
-  // })
