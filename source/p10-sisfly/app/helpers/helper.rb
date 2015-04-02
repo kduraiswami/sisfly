@@ -32,7 +32,8 @@ helpers do
     total_sisfly_score = []
     crime_data.each do |individual_crime|
       category_score = sisfly_category(individual_crime)
-      total_sisfly_score << (category_score + descript_score)
+      total_sisfly_score << (category_score)
+      total_sisfly_score
     end
   end
 
@@ -43,44 +44,65 @@ helpers do
     case category
       when "ARSON"
         100
-      "ASSAULT" 90
-      "VANDALISM" 80
-      "LARCENY/THEFT"
-      "OTHER OFFENSES"
-      "VEHICLE THEFT"
-      "DRUG/NARCOTIC"
-      "BURGLARY"
-      "NON-CRIMINAL" 50
-      "WARRANTS"
-      "SUSPICIOUS OCC"
-      "FRAUD"
-      "SECONDARY CODES"
-      "LIQUOR LAWS"
-      "MISSING PERSON"
-      "SEX OFFENSES, FORCIBLE" 100
-      "FORGERY/COUNTERFEITING"
-      "SEX OFFENSES, NON FORCIBLE"
-      "DRIVING UNDER THE INFLUENCE" 100
-      "TRESPASS"
-      "GAMBLING" 50
-      "STOLEN PROPERTY"
-      "KIDNAPPING"
-      "RUNAWAY"
-      "DRUNKENESS"
-      "DISORDERLY CONDUCT"
-      "WEAPON LAWS" 80
-
-
-
+      when "ASSAULT"
+        90
+      when "VANDALISM"
+        80
+      when "LARCENY/THEFT"
+        90
+      when "OTHER OFFENSES"
+        30
+      when "VEHICLE THEFT"
+        40
+      when "DRUG/NARCOTIC"
+        60
+      when "BURGLARY"
+        80
+      when "NON-CRIMINAL"
+        30
+      when "WARRANTS"
+        40
+      when "SUSPICIOUS OCC"
+        30
+      when "FRAUD"
+        30
+      when "SECONDARY CODES"
+        60
+      when "LIQUOR LAWS"
+        50
+      when "MISSING PERSON"
+        70
+      when "SEX OFFENSES, FORCIBLE"
+        100
+      when "FORGERY/COUNTERFEITING"
+        50
+      when "SEX OFFENSES, NON FORCIBLE"
+        100
+      when "DRIVING UNDER THE INFLUENCE"
+        100
+      when "TRESPASS"
+        50
+      when "GAMBLING"
+        50
+      when "STOLEN PROPERTY"
+        60
+      when "KIDNAPPING"
+        90
+      when "RUNAWAY"
+        50
+      when "DRUNKENESS"
+        60
+      when "DISORDERLY CONDUCT"
+        70
+      when "WEAPON LAWS"
+        100
+      else
+        20
+      end
     end
 
 
   end
-
-  def sisfly_descript(individual_crime)
-
-  end
-
 
 
 end
