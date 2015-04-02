@@ -38,47 +38,48 @@
     });
 
     request.done(function(crimeData) {
-      console.log(crimeData)
       plotRelevantCrimes(crimeData);
     });
   };
 
-  var plotRelevantCrimes = function(){
-    console.log(crimeData)
-    // crimeData.forEach(function(crime){
-  //   var contentString = '<div id="content">'+
-  //   '<div id="siteNotice">'+
-  //   '</div>'+
-  //   '<h1 id="firstHeading" class="firstHeading">'+crime.descript+'</h1>'+
-  //   '<div id="bodyContent">'+
-  //   '<p> '+ crime.dayofweek+' </p>'+
-  //   '<p> '+ crime.date +' </p>'+
-  //   '<p> '+crime.address+'  </p>'+
-  //   '<p>  '+ crime.date +' </p>'+
-  //   '</div>'+
-  //   '</div>';
+  var plotRelevantCrimes = function(crimeData){
+    debugger
+  crimeData.forEach(function(crime){
+    if (crime.length > 0){
+    var contentString = '<div id="content">'+
+    '<div id="siteNotice">'+
+    '</div>'+
+    '<h1 id="firstHeading" class="firstHeading">'+crime.descript+'</h1>'+
+    '<div id="bodyContent">'+
+    '<p> '+ crime.dayofweek+' </p>'+
+    '<p> '+ crime.date +' </p>'+
+    '<p> '+crime.address+'  </p>'+
+    '<p>  '+ crime.date +' </p>'+
+    '</div>'+
+    '</div>';
 
-  //   var infowindow = new google.maps.InfoWindow({
-  //     content: contentString
-  //   });
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
 
-  //   var crimeLatlng = new google.maps.LatLng(Number(crime.y), Number(crime.x));
-  //   var marker = new google.maps.Marker({
-  //     position: crimeLatlng,
-  //     map: map,
-  //     title: crime.descript
-  //   });
-  //   google.maps.event.addListener(marker, 'click', function() {
-  //     infowindow.open(map,marker);
-  //   });
-  // })
-
+    var crimeLatlng = new google.maps.LatLng(Number(crime.y), Number(crime.x));
+    var marker = new google.maps.Marker({
+      position: crimeLatlng,
+      map: map,
+      title: crime.descript
+    });
   }
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
+  })
+
+}
 
 
-  $(function(){
-    if (document.getElementById('map-canvas')) initializeMap();
-  });
+$(function(){
+  if (document.getElementById('map-canvas')) initializeMap();
+});
 
 }();
 

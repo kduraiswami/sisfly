@@ -22,11 +22,10 @@ end
 
 post '/calculation' do
   path_coordinates = JSON.parse(params["path_coordinates"])
-  crimeData = nearby_crimes(relevant_crime(path_coordinates))
-  pp @json_crimes
-  # pp crimeData
-  # path_coordinates.each do |coordinates|
-  #   p coordinates
-  # end
-
+  crimeData = []
+  path_coordinates.each do |individual_coordinate|
+    crimeData << nearby_crimes(individual_coordinate)
+  end
+  content_type :json
+  crimeData.to_json
 end
