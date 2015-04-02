@@ -23,6 +23,9 @@ post '/calculation' do
     crime_data << nearby_crimes(individual_coordinate)
   end
   sisflyScore = sisfly_score(crime_data)
+  p sisflyScore
+  p "------------------------"
+  p "I expect some number below 100"
   selectedCrimeLocations = location_selector(crime_data)
   content_type :json
   {crimeData: selectedCrimeLocations, sisflyScore: sisflyScore}.to_json

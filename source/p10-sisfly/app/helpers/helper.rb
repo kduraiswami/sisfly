@@ -15,11 +15,10 @@ helpers do
         json_crimes << individual_crime
       end
     end
-    json_crimes
     hash_crimes = JSON.parse(json_crimes)
-    hash_crimes.map!{|crime_args| crime_args.delete_if{|key, value| key == "location"}}
     hash_crimes
   end
+
   def location_selector(crime_data)
     selected_crimes = []
     crime_data.each do |coordinate_crime_array|
@@ -29,18 +28,33 @@ helpers do
   end
 
   def sisfly_score(crime_data)
-    total_sisfly_score = []
+    sisfly_score = []
+    sisfly_marker_location = ""
     crime_data.each do |individual_crime|
       category_score = sisfly_category(individual_crime)
-      total_sisfly_score << (category_score)
-      total_sisfly_score
+      sisfly_score << (category_score)
+      sisfly_score.inject{|sum, category_score| sum + category_score} / sisfly_score.size
+      #maybe average because that incorporates length in a sense
     end
+    #sisfly_score << sisfly_location(crime_data)
+    sisfly_score
   end
 
   private
 
+  # def sisfly_location(crime_data)
+  #   crime_data_midpoint = (crime_data.length/2).floor
+  #   lattitude = crime_data[crime_data_midpoint]["x"]
+  #   longitude = crime_data[crime_data_midpoint]["y"]
+  #   lattitude
+  #   longitude
+  # end
+
   def sisfly_category(individual_crime)
     category = individual_crime["category"]
+    p individual_crime["category"]
+    p "--------------------------"
+    p "I expect this to be a crime category"
     case category
       when "ARSON"
         100
@@ -100,9 +114,5 @@ helpers do
         20
       end
     end
-
-
-  end
-
 
 end
