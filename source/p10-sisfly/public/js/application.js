@@ -38,7 +38,8 @@
     });
 
     request.done(function(response) {
-      var plotSisflyScore = function(sisflyData){
+        var plotSisflyScore = function(sisflyData){
+        var sisflyScoreIcon = "images/sisfly_dot.png"
         var contentString =
             '<div class="sisfly-content">'+
             '<h1 class = "score-report">'+sisflyData.sisflyScore+'</h1>'+
@@ -55,6 +56,7 @@
               position: sisflyLatlng,
               map: map,
               draggable:true,
+              icon: sisflyScoreIcon,
               title: String(sisflyData.sisflyScore)
             });
             google.maps.event.addListener(marker, 'click', function() {
@@ -93,7 +95,7 @@
 
       }
         plotSisflyScore(response["sisflyData"])
-        //plotRelevantCrimes(response["crimeData"]);
+        plotRelevantCrimes(response["crimeData"]);
      });
     };
 
