@@ -38,15 +38,19 @@ helpers do
     sisfly_score.inject{|sum, category_score| sum + category_score} / sisfly_score.size
   end
 
-  private
+  def sisfly_lattitude(crime_data)
+    crime_data_midpoint = (crime_data.length/2).floor
+    crime_collection_midpoint = (crime_data[crime_data_midpoint].length/2).floor
+    lattitude = ((crime_data[crime_data_midpoint])[crime_collection_midpoint])["y"]
+  end
 
-  # def sisfly_location(crime_data)
-  #   crime_data_midpoint = (crime_data.length/2).floor
-  #   lattitude = crime_data[crime_data_midpoint]["x"]
-  #   longitude = crime_data[crime_data_midpoint]["y"]
-  #   lattitude
-  #   longitude
-  # end
+  def sisfly_longitude(crime_data)
+    crime_data_midpoint = (crime_data.length/2).floor
+    crime_collection_midpoint = (crime_data[crime_data_midpoint].length/2).floor
+    longitude = ((crime_data[crime_data_midpoint])[crime_collection_midpoint])["x"]
+  end
+
+  private
 
   def sisfly_category(category)
     case category
