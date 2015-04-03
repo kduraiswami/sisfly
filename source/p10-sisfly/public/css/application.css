@@ -98,4 +98,13 @@ html, body, #map-canvas {
   display: none;
 }
 
+.sisfly-content{
+  text-align: center;
+  height:150px;
+  width:350px;
+}
 
+.score-report{
+  font-size: 5em;
+  color: red;
+}
