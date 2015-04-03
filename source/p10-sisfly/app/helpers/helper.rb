@@ -39,15 +39,11 @@ helpers do
   end
 
   def sisfly_lattitude(crime_data)
-    crime_data_midpoint = (crime_data.length/2).floor
-    crime_collection_midpoint = (crime_data[crime_data_midpoint].length/2).floor
-    lattitude = ((crime_data[crime_data_midpoint])[crime_collection_midpoint])["y"]
+    lattitude = ((crime_data[1])[10])["y"]
   end
 
   def sisfly_longitude(crime_data)
-    crime_data_midpoint = (crime_data.length/2).floor
-    crime_collection_midpoint = (crime_data[crime_data_midpoint].length/2).floor
-    longitude = ((crime_data[crime_data_midpoint])[crime_collection_midpoint])["x"]
+    longitude = ((crime_data[1])[10])["x"]
   end
 
   private
@@ -63,17 +59,17 @@ helpers do
       when "LARCENY/THEFT"
         return 90
       when "OTHER OFFENSES"
-        return 30
-      when "VEHICLE THEFT"
-        return 40
-      when "DRUG/NARCOTIC"
         return 60
+      when "VEHICLE THEFT"
+        return 80
+      when "DRUG/NARCOTIC"
+        return 70
       when "BURGLARY"
         return 80
       when "NON-CRIMINAL"
         return 30
       when "WARRANTS"
-        return 40
+        return 50
       when "SUSPICIOUS OCC"
         return 30
       when "FRAUD"
@@ -81,21 +77,21 @@ helpers do
       when "SECONDARY CODES"
         return 60
       when "LIQUOR LAWS"
-        return 50
+        return 30
       when "MISSING PERSON"
         return 70
       when "SEX OFFENSES, FORCIBLE"
         return 100
       when "FORGERY/COUNTERFEITING"
-        return 50
+        return 30
       when "SEX OFFENSES, NON FORCIBLE"
         return 100
       when "DRIVING UNDER THE INFLUENCE"
         return 100
       when "TRESPASS"
-        return 50
+        return 30
       when "GAMBLING"
-        return 50
+        return 30
       when "STOLEN PROPERTY"
         return 60
       when "KIDNAPPING"
@@ -109,7 +105,7 @@ helpers do
       when "WEAPON LAWS"
         return 100
       else
-        return 20
+        return 60
       end
     end
 
