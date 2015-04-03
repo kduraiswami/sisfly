@@ -106,5 +106,6 @@ html, body, #map-canvas {
 
 .score-report{
   font-size: 5em;
+  text-decoration: underline;
   color: red;
 }
