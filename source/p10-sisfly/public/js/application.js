@@ -38,9 +38,29 @@
     });
 
     request.done(function(response) {
-      console.log("made it to ajax")
-      dog = response["crimeData"]
-      console.log(dog)
+      var plotSisflyScore = function(sisflyData){
+        var contentString =
+            '<div class="sisfly-content">'+
+            '<h1 class = "score-report">'+sisflyData.sisflyScore+'</h1>'+
+            '<p> Sisfly Score </p>'
+            //'<p>'+ +'</p>'
+            '</div>';
+
+            var infowindow = new google.maps.InfoWindow({
+              content: contentString
+            });
+
+            var sisflyLatlng = new google.maps.LatLng(Number(sisflyData["y"]), Number(sisflyData["x"]));
+            var marker = new google.maps.Marker({
+              position: sisflyLatlng,
+              map: map,
+              draggable:true,
+              title: String(sisflyData.sisflyScore)
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+              infowindow.open(map,marker);
+            });
+        }
       var plotRelevantCrimes = function(crimeData){
         crimeData.forEach(function(crime){
           if (crime != undefined){
@@ -72,8 +92,8 @@
         })
 
       }
-        plotRelevantCrimes(dog);
-        plotSisflyScore(response["sisflyScore"])
+        plotSisflyScore(response["sisflyData"])
+        //plotRelevantCrimes(response["crimeData"]);
      });
     };
 
