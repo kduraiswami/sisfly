@@ -39,11 +39,11 @@ helpers do
   end
 
   def sisfly_lattitude(crime_data)
-    lattitude = ((crime_data[1])[10])["y"]
+    lattitude = 0 #((crime_data[3])[10])["y"]
   end
 
   def sisfly_longitude(crime_data)
-    longitude = ((crime_data[1])[10])["x"]
+    longitude =  0# ((crime_data[3])[10])["x"]
   end
 
   private
