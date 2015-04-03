@@ -1,8 +1,7 @@
 
 Today:
-3. create a normalized scale of danger from 0 to 100,
-4. this value will be marked with a different color marker using a midpoint of the gps array
-5. speed it up
+4. this value will be marked with a different color marker
+5. speed it up so i can expand search radius
 
 application flow - mvp
 landing page with sisfly. two boxes to submit two different params you can walk from
