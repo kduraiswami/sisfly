@@ -51,7 +51,7 @@
               content: contentString
             });
 
-            var sisflyLatlng = new google.maps.LatLng(37.7580 , -122.4400);//new google.maps.LatLng(Number(sisflyData["y"]), Number(sisflyData["x"]));
+            var sisflyLatlng = new google.maps.LatLng(Number(sisflyData["y"]), Number(sisflyData["x"]));
             var marker = new google.maps.Marker({
               position: sisflyLatlng,
               map: map,
