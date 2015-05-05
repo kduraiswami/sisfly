@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'json'
+require 'pp'
 
 helpers do
 
@@ -9,11 +10,12 @@ helpers do
 
   def nearby_crimes(individual_coordinate)
     json_crimes = ""
-    open("https://data.sfgov.org/resource/tmnf-yvry.json?$where=within_circle(location,#{individual_coordinate["k"]},#{individual_coordinate["D"]},20)") do |all_crimes|
+    open("https://data.sfgov.org/resource/tmnf-yvry.json?$where=within_circle(location,#{individual_coordinate["A"]},#{individual_coordinate["F"]},20)") do |all_crimes|
       all_crimes.each_line do |individual_crime|
         json_crimes << individual_crime
       end
     end
+    pp json_crimes
     crime_data = JSON.parse(json_crimes)
     crime_data
   end

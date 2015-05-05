@@ -7,8 +7,6 @@ get '/' do
 end
 
 get '/cartograph' do
-  #@relavent_crime = crime.relavent_crime.to_json
-  #directions(params)
   javascript_env['routingData'] = {
     startingStreet: params["starting_street"],
     endingStreet: params["ending_street"],
