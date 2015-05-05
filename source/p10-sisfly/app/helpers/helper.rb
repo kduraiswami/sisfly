@@ -15,7 +15,6 @@ helpers do
         json_crimes << individual_crime
       end
     end
-    pp json_crimes
     crime_data = JSON.parse(json_crimes)
     crime_data
   end
@@ -39,12 +38,12 @@ helpers do
     sisfly_score.inject{|sum, category_score| sum + category_score} / sisfly_score.size
   end
 
-  def sisfly_lattitude(crime_data)
-    lattitude = 0 #((crime_data[3])[10])["y"]
+  def sisfly_lattitude(path_coordinates)
+    lattitude = path_coordinates[0]["F"] 
   end
 
-  def sisfly_longitude(crime_data)
-    longitude =  0# ((crime_data[3])[10])["x"]
+  def sisfly_longitude(path_coordinates)
+    longitude = path_coordinates[0]["A"]
   end
 
   private
