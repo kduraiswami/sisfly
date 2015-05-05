@@ -39,11 +39,11 @@ helpers do
   end
 
   def sisfly_lattitude(path_coordinates)
-    lattitude = path_coordinates[0]["F"] 
+    lattitude = path_coordinates[0]["A"]+0.001
   end
 
   def sisfly_longitude(path_coordinates)
-    longitude = path_coordinates[0]["A"]
+    longitude = path_coordinates[0]["F"]+0.001
   end
 
   private
