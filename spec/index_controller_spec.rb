@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "index_controller" do
 
-	describe 'Get/ Index page' do
+	describe 'get / page' do
 
 		it "should return a valid response" do
 			get '/'
