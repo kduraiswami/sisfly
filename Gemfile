@@ -20,7 +20,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
   gem 'rspec', '~>3.0'
-  # gem 'capybara'
+  gem 'capybara'
 end
 
 group :test, :development do
