@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 Friday:
 1. ajax response refactor
@@ -19,4 +20,11 @@ date proximity to this day
 time of day related to now
 day of week related to now
 
+=======
+# sisfly
+
+This will be a practice application that will map the crime along a route in SF
+
+It will use the google maps API and DataSF API to display a walking route and some crime that occured alongside it.
+>>>>>>> 2c0397b4ff9f428dcceba83bcfc8da35101d4e79
 
